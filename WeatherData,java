@@ -1,30 +1,42 @@
 import java.util.ArrayList;
-public class Main
+public class WeatherData
 {
-  public static void main(String[] args) {
-    double[] temps = {
-      99.1, 142, 85, 86.1, 84.6, 94.3, 124.9, 98, 101, 102.5};
-      ArrayList<Double> t = new ArrayList<Double>();
-      for (double n : temps) t.add(n);
-      WeatherData w = new WeatherData(t);
-      t.add(1, 121.0);
-      System.out.println(w);
-      t.add(1, 84.0);
-      System.out.println(w);
-      w.cleanData(85.5, 120.0);
-      System.out.println(w);
-     
-      
-      double[] newTemps = {100.5, 98.5, 102.0, 103.9, 87.5, 105.2, 90.3, 94.8, 109.1, 102.1, 107.4, 93.2};
-      ArrayList<Double> newList = new ArrayList<Double>();
-      for (double n : newTemps) newList.add(n);
-      w = new WeatherData(newList);
-      System.out.println(w.longestHeatWave(100.5));
+    private ArrayList<Double> temperatures;
 
-      double[] aa = {100.5, 98.5, 102.0, 103.9, 87.5, 105.2, 90.3, 94.8, 109.1, 102.1, 107.4, 93.2};
-      ArrayList<Double> newThing = new ArrayList<Double>();
-      for (double n : aa) newThing.add(n);
-      w = new WeatherData(newThing);
-      System.out.println(w.longestHeatWave(95.2));
+    public WeatherData(ArrayList<Double> temps) 
+    {
+        temperatures = temps;
     }
-  }
+    
+    
+    public void cleanData(double lower, double upper)
+    { 
+        for (int i = 0; i < temperatures.size(); i++) {
+            double temp = temperatures.get(i);
+            if (temp < lower || temp > upper) {
+                temperatures.remove(i);
+                i--;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+            }
+        }
+    }
+
+    public String toString() {
+        return temperatures.toString();
+    }
+
+    public int longestHeatWave(double threshold)
+    { 
+     int heatWave = 0;
+     int max = 0;
+     for (double t : temperatures) {
+        if (t > threshold) {
+            heatWave++;
+        }
+        if (heatWave > max) {
+            max = heatWave;
+        }
+        else heatWave = 0;
+     }
+     return max;
+    }
+}
